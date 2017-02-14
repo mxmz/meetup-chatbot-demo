@@ -63,10 +63,11 @@ func TestSimple(t *testing.T) {
 		log.Println("consumed")
 		wg.Done()
 	}()
-	<-time.After(30 * time.Second)
+	<-time.After(10 * time.Second)
 	mqbs.Shutdown()
 	wg.Wait()
 	Expect(msgs[0].ID).To(BeEquivalentTo("asdakjdhakjdh"))
+	Expect(msgs[0].Payload).To(BeEquivalentTo(290))
 
 	//<-c1.MsgC
 

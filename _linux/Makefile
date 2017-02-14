@@ -3,7 +3,7 @@
 LOCAL_GOPATH=$(shell readlink -f ..)/_local/go
 ROOT_PATH=$(shell readlink -f ../src/telegram-meetup)
 
-GOPATH:=$(LOCAL_GOPATH)
+export GOPATH:=$(LOCAL_GOPATH)
 
 GODEPS=google.golang.org/appengine 		\
 	   github.com/cnf/structhash 		\

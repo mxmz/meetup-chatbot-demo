@@ -18,7 +18,6 @@ import (
 )
 
 const MyMeetupGroup = "Milano-Chatbots-Meetup"
-const MyMeetupGroup2 = "TDD-Milano"
 
 type theBot struct {
 	users       Repository
@@ -47,7 +46,7 @@ func NewBot(env Env, db Repository, q MessageEnqueuer, m MeetupService, ma Meetu
 }
 
 func (b *theBot) handleStartCommand(ctx context.Context, m *InboundChatMessage) error {
-	var response = "Benvenuto, " + m.SenderName + "."
+	var welcomeMsg = "Benvenuto, " + m.SenderName + "."
 	var userid = UserID(m.SenderID)
 	props, err := b.users.GetUserProperties(ctx, userid, "ID", "Name")
 	if err != nil {
@@ -71,7 +70,7 @@ func (b *theBot) handleStartCommand(ctx context.Context, m *InboundChatMessage) 
 		if err == nil {
 			err = b.queue.HandleOutboundChatMessage(ctx, &OutboundChatMessage{
 				RecipientID: string(userid),
-				Message:     response,
+				Message:     welcomeMsg,
 				Buttons: []Button{
 					Button{"ℹ️ Prossimo", "next"},
 					Button{"🌐 Mappa", "map"},

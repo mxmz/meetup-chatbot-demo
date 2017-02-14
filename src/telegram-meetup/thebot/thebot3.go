@@ -17,7 +17,7 @@ func init() {
 
 func (b *theBot) handleAttending(ctx context.Context, m *InboundChatMessage) error {
 	log.Println(m)
-	if len(m.Command) > 2 {
+	if len(m.Command) > 1 { // /attending <etag>
 		group := MyMeetupGroup
 		userid := m.SenderID
 		next, err := b.meetups.GetNextMeetup(ctx, MeetupGroupID(group), time.Now())
@@ -49,7 +49,7 @@ func (b *theBot) handleAttending(ctx context.Context, m *InboundChatMessage) err
 
 func (b *theBot) handleNotAttending(ctx context.Context, m *InboundChatMessage) error {
 	log.Println(m)
-	if len(m.Command) > 2 {
+	if len(m.Command) > 1 { //  /not_attending <etag>
 		group := MyMeetupGroup
 		userid := m.SenderID
 		err := b.users.SetMeetupUserLinkProperties(

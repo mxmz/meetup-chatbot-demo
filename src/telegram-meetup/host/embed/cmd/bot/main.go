@@ -25,14 +25,22 @@ const FacebookWebhook = "/facebook-webhook"
 
 func main() {
 	var mq = tskbroker.NewMqBrokerMap(context.TODO(), 10, 10)
-
 	go func() {
 		appHost := NewAppHost(mq)
-		app.RegisterChatBotApp(appHost)
 		app.RegisterInboundWorker(appHost)
+		appHost.Run(context.TODO())
+	}()
+	go func() {
+		appHost := NewAppHost(mq)
 		app.RegisterOutboundWorker(appHost)
 		appHost.Run(context.TODO())
 	}()
+	go func() {
+		appHost := NewAppHost(mq)
+		app.RegisterChatBotApp(appHost)
+		appHost.Run(context.TODO())
+	}()
+
 	/*
 		go func() {
 			for {
