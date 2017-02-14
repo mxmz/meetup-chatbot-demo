@@ -1,0 +1,45 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "bash",
+    "args": [
+        "-c"
+    ],
+    "isShellCommand": true,
+    "tasks": [
+        {
+            "taskName": "Run go test ./...",
+            "args": [
+                "go test ./..."
+            ],
+            "echoCommand": true,
+            "showOutput": "always",
+            "isTestCommand": true,
+            "problemMatcher": {
+                "owner": "go",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}/thebot"
+                ],
+                "pattern": {
+                    "regexp": "^\\s+(.+)\\:(\\d+)\\:(.+)$",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                }
+            },
+            "suppressTaskName": true
+        },
+        {
+            "taskName": "Run goapp serve in ./gaeapp",
+            "args": [
+                "cd ./gaeapp && goapp serve"
+            ],
+            "echoCommand": true,
+            "showOutput": "always",
+            "isTestCommand": true,
+            "suppressTaskName": true
+        }
+    ]
+}

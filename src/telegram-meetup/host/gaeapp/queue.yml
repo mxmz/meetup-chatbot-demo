@@ -1,0 +1,20 @@
+queue:
+- name: inbound-messages
+  rate: 10/s 
+  retry_parameters:
+   task_age_limit: 30m
+- name: outbound-messages
+  rate: 10/s 
+  retry_parameters:
+   task_age_limit: 30m
+- name: webhook-messages
+  rate: 10/s 
+  retry_parameters:
+   task_age_limit: 30m
+- name: jobs
+  rate: 10/s 
+  max_concurrent_requests: 1
+  retry_parameters:
+   task_age_limit: 30m
+   min_backoff_seconds: 3
+   max_backoff_seconds: 20

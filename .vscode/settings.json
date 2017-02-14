@@ -1,0 +1,14 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "editor.cursorStyle": "underline",
+    "editor.fontSize": 12,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "_local": true,
+        "**/old?": true,
+        "**/_old?": true
+    },
+    "go.gopath": "${workspaceRoot}/_local/go"
+}

@@ -1,0 +1,23 @@
+runtime: go
+api_version: go1
+application: meetup-chatbot
+
+handlers:
+- url: /qrcode\.gif
+  static_files: qrcode.gif
+  upload: qrcode\.gif
+- url: /.*
+  script: _go_app
+ 
+env_variables:
+    dev_TELEGRAM_TOKEN:  "256808855:AAF1Dl483S-k1Gm5bJdR65NtPCj_XaA2z5g"
+    dev_MEETUP_CLIENT_ID: "sv1sec3dtt2q7flrabec7jaiu0"
+    dev_MEETUP_CLIENT_SECRET: "cpr05tpjnlomv8oln1dktkgoh6"
+    
+    MEETUP_KEY:  "564a392576101d105434415277167e"
+
+    TELEGRAM_TOKEN: "231072362:AAFbhijO2rjXkqZaP8D__xR4YgCdm_I_pZY"
+        
+    MEETUP_CLIENT_ID: "auhfm315719pde0balhlcsjkp"
+    MEETUP_CLIENT_SECRET: "eabgptnvht4rdpnut0dbp1q4qj"
+  

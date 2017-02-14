@@ -1,0 +1,4 @@
+cron:
+- description: Notify newxt meetup
+  url: /cron-handler
+  schedule: every 10 minutes
