@@ -78,7 +78,7 @@ func (b *theBot) handleStartCommand(ctx context.Context, m *InboundChatMessage) 
 			})
 			b.queue.HandleJobRequest(ctx, &JobRequest{
 				Cookie:    []byte("cookie"),
-				Command:   []string{"do", "this"},
+				Command:   []string{"NOP", "NOP"},
 				Scheduled: time.Now().Add(20 * time.Second),
 				Droppable: time.Now().Add(120 * time.Second),
 			})
@@ -283,7 +283,7 @@ func (b *theBot) notifyMeetup(ctx context.Context, userid string, meetup string,
 	err := b.queue.HandleOutboundChatMessage(ctx, &OutboundChatMessage{
 		RecipientID: userid,
 		Message: fmt.Sprintf(
-			"️➡️ %s\n"+
+			"️🔴 %s\n"+
 				"💬 %s\n"+
 				"📍 %s\n"+
 				"📆 %v\n",
@@ -297,10 +297,10 @@ func (b *theBot) notifyMeetup(ctx context.Context, userid string, meetup string,
 	if err == nil && eventInProgress(event) {
 		err = b.queue.HandleOutboundChatMessage(ctx, &OutboundChatMessage{
 			RecipientID: string(userid),
-			Message:     "💬 L'evento è in corso. Stai partecipando?",
+			Message:     "❗⏰ Sembra che l'evento sia già iniziato.\n❓👤 Stai partecipando o hai intenzione di partecipare?",
 			Buttons: []Button{
-				Button{"✔️ Sì", "attending " + event.ETag},
-				Button{"❌ No", "not_attending " + event.ETag},
+				Button{"✔️ Sì.", "attending " + event.ETag},
+				Button{"❌ No.", "not_attending " + event.ETag},
 			},
 		})
 	}
